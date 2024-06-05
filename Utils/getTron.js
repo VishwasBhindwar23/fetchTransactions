@@ -68,7 +68,7 @@ async function getTransactions(address, fromTimestamp, toTimestamp) {
                 const filteredTransactions = block.transactions.filter(tx => {
                     //Add the line below if we only want trx token transfers or else comment it
 
-                    //if (tx.raw_data.contract[0].type !== 'TransferContract') return false;
+                    if (tx.raw_data.contract[0].type !== 'TransferContract') return false;
                     
                     const ownerAddress = tronWeb.address.fromHex(tx.raw_data.contract[0].parameter.value.owner_address);
                     return ownerAddress === address ;
